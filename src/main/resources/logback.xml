@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="LOG" value="./AppLogs"/>
+	
+	<appender name="regINT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+		<File>${LOG}/AOSLogs/AOSlogger.log</File>
+		<encoder>
+			<pattern>%p %d %F %n%m%n%n</pattern>
+		</encoder>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<maxIndex>20</maxIndex>
+			<FileNamePattern>${LOG}/RegLogs/Reglogger.log.%i</FileNamePattern>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>5MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>	
+	
+	<logger name="RegLogging" additivity="false" level="DEBUG">
+		<appender-ref ref="regINT" />
+	</logger>
+	
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

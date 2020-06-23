@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: dev
+    
+---
+#####################################################
+#DEVELOPMENT PROFILE STARTS
+#####################################################
+
+spring:
+  profiles: dev
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+  datasource:
+    isJndi: false
+    jndiName: java:comp/env/jdbc/TestDB
+    url: jdbc:mysql://localhost:3306/org
+    username: root
+    password: vaibhav60
+    driver-class-name: com.mysql.jdbc.Driver
+    
+#####################################################
+#DEVELOPMENT PROFILE ENDS
+#####################################################
